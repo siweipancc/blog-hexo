@@ -1,0 +1,24 @@
+sudo: false
+language: node_js
+node_js:
+  - 14 # use nodejs v10 LTS
+cache: npm
+branches:
+  only:
+    - master # build master branch only
+before_install:
+  - git clone https://github.com/blinkfox/hexo-theme-matery.git ./themes/hexo-theme-matery
+script:
+  - hexo generate # generate static files
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  on:
+    branch: master
+  local-dir: public
+  target_branch: gh-pages
+  verbose: true
+  deployment_file: true
+
