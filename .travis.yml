@@ -7,13 +7,14 @@ branches:
   only:
     - master # build master branch only
 before_install:
-  - git clone https://github.com/blinkfox/hexo-theme-matery.git ./themes/hexo-theme-matery
-  - rm -f ./themes/hexo-theme-matery/_config.yml
+  - npm install
+  - npm run install-themes
+  - npm run remove-themes-config
 script:
   - hexo generate # generate static files
 deploy:
   provider: pages
-  skip-cleanup: true
+  cleanup: false
   github-token: $GH_TOKEN
   keep-history: true
   on:
@@ -22,4 +23,9 @@ deploy:
   target_branch: gh-pages
   verbose: true
   deployment_file: true
-
+notifications:
+  email:
+    recipients:
+      - tuzhenyue@hotmail.com
+    on_success: change
+    on_failure: always

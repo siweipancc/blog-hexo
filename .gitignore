@@ -6,3 +6,5 @@ _site/
 public
 *.iml
 node_modules
+themes
+/*.js
