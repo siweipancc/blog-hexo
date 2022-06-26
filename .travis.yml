@@ -7,7 +7,7 @@ branches:
   only:
     - master # build master branch only
 before_install:
-  - git clone https://github.com/blinkfox/hexo-theme-matery.git ./themes/hexo-theme-matery
+  - npm run install-themes
   - rm -f ./themes/hexo-theme-matery/_config.yml
 script:
   - hexo generate # generate static files
