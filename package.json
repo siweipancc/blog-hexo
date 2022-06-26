@@ -8,7 +8,8 @@
     "deploy": "hexo deploy",
     "tsc": "tsc",
     "install-themes": "npm run tsc checkThemes && node checkThemes.js",
-    "serve": "npm run install-themes && hexo clean && hexo server"
+    "remove-themes-config": "npm run tsc removeDefaultConfig.ts && node removeDefaultConfig.js",
+    "serve": "npm run install-themes &&  npm run remove-themes-config && hexo clean && hexo server"
   },
   "hexo": {
     "version": "6.2.0"

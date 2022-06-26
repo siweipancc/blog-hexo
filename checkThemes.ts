@@ -59,7 +59,7 @@ function resolveUserTheme(theme: Theme | string): Promise<void> {
         const moduleName = "hexo-theme-" + theme;
         return new Promise<void>((resolve) => {
             console.info("using node_modules : %s", moduleName)
-            resolve( );
+            resolve();
         });
     }
     const name = (theme as Theme).name;
@@ -68,16 +68,16 @@ function resolveUserTheme(theme: Theme | string): Promise<void> {
     return checkFileExists(path).then((exists: boolean) => {
         if (exists) {
             console.info("themes exists %s", name);
-            return;
+        } else {
+            // load matery
+            clone(repo, path, {}, function (error: Error) {
+                if (error) {
+                    console.error("themes download fails,name: %s, error: %o", name, error);
+                } else {
+                    console.info("themes download success, name: %s", name);
+                }
+            })
         }
-        // load matery
-        clone(repo, path, {}, function (error: Error) {
-            if (error) {
-                console.error("themes download fails,name: %s, error: %o", name, error);
-            } else {
-                console.info("themes download success, name: %s", name);
-            }
-        })
     })
 }
 
@@ -96,3 +96,4 @@ Promise.all([resolveUserTheme(userTheme)])
 
 
 
+export {};

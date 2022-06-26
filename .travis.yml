@@ -8,7 +8,7 @@ branches:
     - master # build master branch only
 before_install:
   - npm run install-themes
-  - rm -f ./themes/hexo-theme-matery/_config.yml
+  - npm run remove-themes-config
 script:
   - hexo generate # generate static files
 deploy:
