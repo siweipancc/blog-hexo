@@ -23,4 +23,9 @@ deploy:
   target_branch: gh-pages
   verbose: true
   deployment_file: true
-
+notifications:
+  email:
+    recipients:
+      - tuzhenyue@hotmail.com
+    on_success: change
+    on_failure: always
